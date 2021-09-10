@@ -2,7 +2,7 @@
 192.168.121.1 ansible_ssh_user=abderrahmane ansible_ssh_pass=ertyuiop
 
 [haproxy]
-192.168.121.53 ansible_ssh_user=root ansible_ssh_pass=ertyuiop
+172.105.77.200 ansible_ssh_user=root ansible_ssh_pass=
 
 [webserver]
-192.168.121.235 ansible_ssh_user=root ansible_ssh_pass=ertyuiop
+172.104.158.107 ansible_ssh_user=root ansible_ssh_pass=
