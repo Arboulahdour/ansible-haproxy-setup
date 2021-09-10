@@ -1,5 +1,5 @@
 [ansible_controller]
-192.168.121.1 ansible_ssh_user=abderrahmane ansible_ssh_pass=ertyuiop
+192.168.121.1 ansible_ssh_user=abderrahmane ansible_ssh_pass=
 
 [haproxy]
 172.105.77.200 ansible_ssh_user=root ansible_ssh_pass=
