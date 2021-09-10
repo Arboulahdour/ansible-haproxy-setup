@@ -3,7 +3,7 @@
   hosts: haproxy
   gather_facts: false
 #  vars_files:
-#    - vars/default.yml
+#    - ansible.vars
   tasks:
     - name: "Installing haproxy"
       package:
