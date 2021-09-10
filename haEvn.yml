@@ -22,7 +22,7 @@
   hosts: webserver
   gather_facts: false
 #  vars_files:
-#    - vars/default.yml
+#    - ansible.vars
   tasks:
     - name: "Installing httpd on the webserver machine"
       package:
