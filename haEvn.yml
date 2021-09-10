@@ -1,0 +1,39 @@
+---
+- name: Setting UP HA Proxy  
+  hosts: haproxy
+  gather_facts: false
+#  vars_files:
+#    - vars/default.yml
+  tasks:
+    - name: "Installing haproxy"
+      package:
+        name: haproxy
+        state: present
+    - name: "Editing haproxy.cfg config"
+      template:
+        src: "/home/abderrahmane/Ansible/HAproxy/haproxy.cfg.j2"
+        dest: "/etc/haproxy/haproxy.cfg"
+    - name: "Starting haproxy service"
+      service:
+        name: haproxy
+        state: restarted
+
+- name: Setting UP Web Server  
+  hosts: webserver
+  gather_facts: false
+#  vars_files:
+#    - vars/default.yml
+  tasks:
+    - name: "Installing httpd on the webserver machine"
+      package:
+        name: httpd
+        state: present
+    - name: "Copying data to the webserver"
+      copy:
+        src: /home/abderrahmane/Ansible/HAproxy/index.html
+        dest: /var/www/html/index.html
+    - name: "Starting httpd service"
+      service:
+        name: httpd
+        state: started
+        enabled: yes

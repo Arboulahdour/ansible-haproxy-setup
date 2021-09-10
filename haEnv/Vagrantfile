@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  # HA Proxy VM :
+  config.vm.define "haproxy" do |haproxy|
+    haproxy.vm.box = "generic/ubuntu1804"
+    haproxy.vm.hostname = "haproxy"
+    haproxy.vm.provider "libvirt" do |v|
+      v.memory = 1024
+      v.nested = true
+      v.cpus = 1
+      v.storage_pool_name = "default"
+    end
+    haproxy.vm.provision "shell", path: "bootstrap_haproxy.sh"
+  end
+
+  # Web Server VM :
+  config.vm.define "webserver" do |webserver|
+    webserver.vm.box = "centos/8"
+    webserver.vm.hostname = "webserver"
+    webserver.vm.provider "libvirt" do |v|
+      v.memory = 1024
+      v.cpus = 1
+      v.nested = true
+      v.storage_pool_name = "default"
+    end
+    webserver.vm.provision "shell", path: "bootstrap_webserver.sh"
+  end
+
+end
