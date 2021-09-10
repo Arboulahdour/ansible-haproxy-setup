@@ -32,6 +32,12 @@
       copy:
         src: /home/abderrahmane/Ansible/HAproxy/index.html
         dest: /var/www/html/index.html
+    - name: "Allowing HTTP & HTTPS requests in the firewall"
+      command: "{{ item }}"
+      with_items:
+        - /usr/bin/firewall-cmd --permanent --zone=public --add-service=http
+        - /usr/bin/firewall-cmd --permanent --zone=public --add-service=https
+        - /usr/bin/firewall-cmd --reload
     - name: "Starting httpd service"
       service:
         name: httpd
